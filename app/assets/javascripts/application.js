@@ -10,6 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
+//= require turbolinks
+//= require lodash
+//= require string
+//= require knockout
+//= require moment
+//= require js-routes
 //= require turbolinks
 //= require_tree .

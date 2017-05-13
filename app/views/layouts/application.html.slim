@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Lichen
+    = stylesheet_link_tag "application", media: 'all', 'data-turbolinks-track' => true
+    = yield :stylesheets
+
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    = yield :javascripts
+
+    = csrf_meta_tags
+    = action_cable_meta_tag
+
+  body data-page=controller_name data-action=action_name
+    = yield
