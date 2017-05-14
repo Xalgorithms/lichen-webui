@@ -9,7 +9,13 @@
   }
 
   function submit_profile(vm) {
-    
+    var payload = {
+        name: vm.name(),
+        owner_id: vm.owner_id()
+    };
+    $.post(Routes.api_v1_actions_path(), { actions_profile_add : payload }, function (o) {
+      console.log('sent change');
+    });    
   }
 
   function populate_invite(vm) {
@@ -30,8 +36,21 @@
     }
   };
 
-  function receive(event) {
-    console.log(event);
+  var changes = {
+    'added' : {
+      'profile' : receive_added_profile
+    }
+  };
+
+  function receive(ch) {
+    var fn = _.get(_.get(changes, ch.effect, {}), ch.model, _.identity);
+    fn(ch);
+  }
+
+  function receive_added_profile(ch) {
+    $.get(Routes.api_v1_profile_path(ch.id), function (o) {
+      page_vm.profiles.push(make_profile_vm(o));
+    });
   }
 
   function make_profile_vm(pm) {

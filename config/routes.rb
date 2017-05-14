@@ -8,4 +8,12 @@ Rails.application.routes.draw do
   authenticate :user do
     resources :profiles, only: [:index]
   end
+
+  # api
+  namespace :api do
+    namespace :v1 do
+      resources :actions, only: [:create]
+      resources :profiles, only: [:show]
+    end
+  end
 end
