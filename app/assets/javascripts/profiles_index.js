@@ -1,7 +1,32 @@
 (function () {
+  function populate_profile(vm) {
+    var mvm = {
+      name: ko.observable(),
+      owner_id: ko.observable(user.id)
+    };
+
+    return mvm;
+  }
+
+  function submit_profile(vm) {
+    
+  }
+
+  function populate_invite(vm) {
+    var mvm = {
+    };
+
+    return mvm;
+  }
+
+  function submit_invite(vm) {
+    debugger;
+  }
+
   var page_vm = {
     modals: {
-      //room: App.make_modal([], populateRoom, submitRoom)
+      profile: App.make_modal([], populate_profile, submit_profile),
+      invite: App.make_modal([], populate_invite, submit_invite)
     }
   };
 
@@ -19,6 +44,10 @@
       return vm.owner().id === user.id;
     });
 
+    vm.invite = function (vm) {
+      page_vm.modals.invite.actions.activate();
+    };
+
     return vm;
   }
   
@@ -30,7 +59,7 @@
     });
 
     page_vm.add = function (vm) {
-      //page_vm.modals.room.actions.activate();
+      page_vm.modals.profile.actions.activate();
     };
 
     return page_vm;

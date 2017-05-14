@@ -1,0 +1,28 @@
+<!-- ko with: modals.invite -->
+.modal data-bind="css: { 'is-active': active }"
+  .modal-background
+  .modal-card
+    header.modal-card-head
+      p.modal-card-title invite
+      a data-bind="click: actions.deactivate"
+        = fa_icon('close')
+    section.modal-card-body
+      <!-- ko with: model -->
+      / label.label for="name" Name
+      / p.control
+      /   input.input#name type="text" data-bind="value: name"
+
+      / label.label for="inner_light" Inner Light
+      / p.control
+      /   span.select
+      /     select#inner_light data-bind="options: lights, optionsText: 'name', optionsValue: 'id', value: inner_light_id, optionsCaption: 'Select light...'"
+
+      <!-- /ko -->
+    footer.modal-card-foot
+      a.button.is-default data-bind="click: actions.deactivate"
+        = fa_icon('close')
+        span close
+      a.button.is-primary data-bind="click: actions.submit"
+        = fa_icon('check')
+        span update_create
+<!-- /ko -->
