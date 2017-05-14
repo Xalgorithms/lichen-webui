@@ -12,14 +12,19 @@ html
     = action_cable_meta_tag
 
   body data-page=controller_name data-action=action_name
-    nav.nav.has-shadow
-      div.container
-        .nav-left
-          - sections.each do |name|
-            = link_to(t(".#{name}"), name, class: "nav-item is-tab #{controller_name.eql?(name.to_s) ? 'is-active' : ''}")
+    - if user_signed_in?
+      nav.nav.has-shadow
+        div.container
+          = render('navbar_left')
+          = render('navbar_right')
 
-    section.section
-      .container.is-fluid
-        = yield
+      section.section
+        .container.is-fluid
+          = yield
+
+    - else
+      section.section
+        .container.is-fluid
+          = yield
 
     = yield(:javascript)

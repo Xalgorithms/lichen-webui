@@ -1,0 +1,5 @@
+.nav-left
+  .nav-item= format_user(current_user)
+  - sections.each do |name|
+    = link_to(t(".#{name}"), name, class: "nav-item is-tab #{controller_name.eql?(name.to_s) ? 'is-active' : ''}")
+
