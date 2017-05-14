@@ -5,4 +5,14 @@ class ActionService
 
     ChangesService.added(pm)
   end
+
+  @@thing_to_model = {
+    'profile' => Profile,
+  }
+  
+  def self.remove(a)
+    kl = @@thing_to_model.fetch(a.thing)
+    m = kl.where(public_id: a.thing_id).first
+    m.destroy if m
+  end
 end

@@ -7,6 +7,10 @@ module Api
             klass: Actions::ProfileAdd,
             args: [:name, :owner_id],
           },
+          'actions_remove' => {
+            klass: Actions::Remove,
+            args: [:thing_id, :thing],
+          },
         }
       
         @event = make

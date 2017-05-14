@@ -2,8 +2,13 @@
   header.card-header
     p.card-header-title
       a data-bind="attr: { href: url}, text: name"
-    span.card-header-icon data-bind="if: is_owner"
+    <!-- ko if: is_owner -->
+    span.card-header-icon
       span.icon
         = fa_icon('key')
+    span.card-header-icon
+      a.icon data-bind="click: remove"
+        = fa_icon('trash')
+    <!-- /ko -->
   footer.card-footer
     a.card-footer-item data-bind="click: invite" Invite

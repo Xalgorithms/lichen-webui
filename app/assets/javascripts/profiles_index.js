@@ -37,13 +37,14 @@
   };
 
   var changes = {
-    'added' : {
-      'profile' : receive_added_profile
+    'profile' : {
+      'added' : receive_added_profile,
+      'destroyed' : receive_destroyed_profile
     }
   };
 
   function receive(ch) {
-    var fn = _.get(_.get(changes, ch.effect, {}), ch.model, _.identity);
+    var fn = _.get(_.get(changes, ch.model, {}), ch.effect, _.identity);
     fn(ch);
   }
 
@@ -53,12 +54,28 @@
     });
   }
 
+  function receive_destroyed_profile(ch) {
+    page_vm.profiles.remove(function (vm) {
+      return vm.id === ch.id;
+    });
+  }
+
   function make_profile_vm(pm) {
     return Builders.make_profile_vm(pm, function () {
       return {
         invite: function (vm) {
           page_vm.modals.invite.actions.activate();
-        }
+        },
+	remove: function (vm) {
+	  var payload = {
+            thing: 'profile',
+	    thing_id: vm.id
+	  };
+	  
+	  $.post(Routes.api_v1_actions_path(), { actions_remove : payload }, function (o) {
+	    console.log('sent change');
+	  });
+	}
       };
     });
   }

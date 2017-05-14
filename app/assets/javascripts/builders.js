@@ -2,6 +2,7 @@ this.Builders = {};
 
 Builders.make_profile_vm = function (pm, fn) {
   var vm = {
+    id: pm.id,
     name: ko.observable(pm.name),
     owner: ko.observable(pm.owner),
     users: ko.observableArray(pm.users),

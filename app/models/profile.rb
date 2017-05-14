@@ -11,4 +11,8 @@ class Profile
     super(*args)
     self.public_id ||= UUID.generate
   end
+
+  after_destroy do |m|
+    ChangesService.destroyed(m)
+  end
 end
