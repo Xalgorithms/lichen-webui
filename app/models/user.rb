@@ -6,6 +6,10 @@ class User
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 
   field :fullname, type: String, default: nil
+  field :public_id, type: String
+
+  has_and_belongs_to_many :profiles, inverse_of: :users
+  has_many :owned, class_name: 'Profile', inverse_of: :owner
 
   # database_authenticatable
   field :email,    type: String, default: nil
@@ -23,8 +27,8 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
-  # def initialize(*args)
-  #   super(*args)
-  #   self.public_id ||= UUID.generate
-  # end
+  def initialize(*args)
+    super(*args)
+    self.public_id ||= UUID.generate
+  end
 end

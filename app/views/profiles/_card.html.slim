@@ -1,0 +1,9 @@
+.card
+  header.card-header
+    p.card-header-title
+      a data-bind="text: name"
+    span.card-header-icon data-bind="if: is_owner"
+      span.icon
+        = fa_icon('key')
+  footer.card-footer
+    a.card-footer-item Invite

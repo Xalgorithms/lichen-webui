@@ -1,5 +1,15 @@
 #page
-  p Foo
+  .control.is-grouped
+    .control
+      a.button data-bind="click: add" Add
+  <!-- ko foreach: chunks -->
+  .columns data-bind="foreach: $data"
+    .column.is-3
+      = render('card')
+  <!-- /ko -->
+  
 
 = content_for(:javascript) do
   javascript:
+    var profiles = #{raw MultiJson.encode(@profiles)};
+    var user = #{raw MultiJson.encode(@user)};
