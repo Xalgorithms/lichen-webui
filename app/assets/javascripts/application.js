@@ -19,3 +19,4 @@
 //= require js-routes
 //= require turbolinks
 //= require_tree .
+//= require_tree ./channels
