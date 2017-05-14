@@ -41,6 +41,7 @@ gem 'puma', '~> 3.7'
 
 # data
 gem 'bcrypt', '~> 3.1.7'
+gem 'devise', github: 'plataformatec/devise'
 gem 'mongoid', '~> 6.1.0'
 gem 'uuid'
 
