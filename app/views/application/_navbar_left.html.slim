@@ -2,4 +2,9 @@
   .nav-item= format_user(current_user)
   - sections.each do |name|
     = link_to(t(".#{name}"), name, class: "nav-item is-tab #{controller_name.eql?(name.to_s) ? 'is-active' : ''}")
+    - if name.eql?(:profiles) && controller_name.eql?('profiles') && @profile_model
+      span.nav-item
+        span.nav-hierarchy
+          = fa_icon('chevron-right')
+        span= @profile_model.name
 

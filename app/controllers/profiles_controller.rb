@@ -6,7 +6,8 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile = ProfileSerializer.one(Profile.where(public_id: params['id']).first)
+    @profile_model = Profile.where(public_id: params['id']).first
+    @profile = ProfileSerializer.one(@profile_model)
   end
 
   def serialize_user
