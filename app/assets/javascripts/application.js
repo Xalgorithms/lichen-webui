@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require turbolinks
+//= require jquery
 //= require lodash
 //= require string
 //= require knockout
