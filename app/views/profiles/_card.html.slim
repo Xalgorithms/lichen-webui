@@ -1,7 +1,7 @@
 .card
   header.card-header
     p.card-header-title
-      a data-bind="text: name"
+      a data-bind="attr: { href: url}, text: name"
     span.card-header-icon data-bind="if: is_owner"
       span.icon
         = fa_icon('key')

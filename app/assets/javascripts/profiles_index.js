@@ -54,20 +54,13 @@
   }
 
   function make_profile_vm(pm) {
-    var vm = {
-      name: ko.observable(pm.name),
-      owner: ko.observable(pm.owner)
-    };
-
-    vm.is_owner = ko.computed(function() {
-      return vm.owner().id === user.id;
+    return Builders.make_profile_vm(pm, function () {
+      return {
+        invite: function (vm) {
+          page_vm.modals.invite.actions.activate();
+        }
+      };
     });
-
-    vm.invite = function (vm) {
-      page_vm.modals.invite.actions.activate();
-    };
-
-    return vm;
   }
   
   function init() {

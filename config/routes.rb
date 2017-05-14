@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # views
   authenticate :user do
-    resources :profiles, only: [:index]
+    resources :profiles, only: [:index, :show]
   end
 
   # api

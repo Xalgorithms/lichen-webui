@@ -1,0 +1,16 @@
+#page
+  <!-- ko with: profile -->
+  .content
+    h1 data-bind="text: name"
+    p
+      span Owner:&nbsp;
+      span data-bind="text: owner_label"
+    p
+      span Accessible by:&nbsp;
+      span data-bind="text: users_list"
+  <!-- /ko -->
+
+= content_for(:javascript) do
+  javascript:
+    var profile = #{raw MultiJson.encode(@profile)};
+    var user = #{raw MultiJson.encode(@user)};
