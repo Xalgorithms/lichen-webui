@@ -11,11 +11,20 @@
   
   function extend_profile_vm(pvm) {
     return {
-      owner_label: ko.computed(function() {
-	return format_user(pvm.owner());
-      }),
-      users_list: ko.computed(function() {
-	return _.join(_.map(pvm.users(), format_user), ', ');
+      user_vms: ko.computed(function () {
+	return _.map(pvm.users(), function (u) {
+	  var extras = {
+	    label: ko.computed(function () {
+	      return u.name + " (" + u.email + ")";
+	    }),
+	    is_owner: ko.computed(function () {
+	      var oum = pvm.owner();
+	      return u.id === oum.id;
+	    })
+	  };
+
+	  return _.assignIn(extras, u);
+	});
       })
     };
   }

@@ -1,14 +1,28 @@
 #page
-  <!-- ko with: profile -->
-  .content
-    h1 data-bind="text: name"
-    p
-      span Owner:&nbsp;
-      span data-bind="text: owner_label"
-    p
-      span Accessible by:&nbsp;
-      span data-bind="text: users_list"
-  <!-- /ko -->
+  .columns.is-thinner
+    .column.is-one-third.has-right-border
+      h1 Users
+      <!-- ko with: profile -->
+      ul.users
+        <!-- ko foreach: user_vms -->
+        li
+          div.name
+            <!-- ko if: is_owner -->
+            div.icon
+              = fa_icon('key')
+            <!-- /ko -->
+            <!-- ko ifnot: is_owner -->
+            span.icon
+              = fa_icon('user')
+            <!-- /ko -->
+            span data-bind="text: name"
+          div.email data-bind="text: email"
+          <!-- /ko -->
+      <!-- /ko -->
+      div.actions
+        a.button.is-success Invite member
+    .column.is-one-third.has-right-border
+      h1 Documents
 
 = content_for(:javascript) do
   javascript:

@@ -6,3 +6,51 @@ span.nav-hierarchy {
     line-height: 1;
     margin-right: 6px;
 }
+
+.is-thinner {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.has-right-border {
+    border-right: 1px solid rgba(10, 10, 10, 0.1);
+    margin-left: 14px;
+    padding-top: 0;
+
+    h1 {
+	font-size: 200%;
+	vertical-align: top;
+	border-bottom: 1px solid rgba(40, 40, 50, 0.1);	
+    }
+}
+
+ul.users {
+    margin-top: 16px;
+
+    li {
+	.icon {
+	    margin-right: 4px;
+	}
+
+	.name {
+	    font-size: 110%;
+	}
+	
+	.email {
+	    padding-left: px;
+	    font-size: 70%;
+	    color: rgba(40, 40, 45, 0.6);
+	}
+    }
+}
+
+.actions {
+    margin-top: 12px;
+}
+
+.card-footer-button {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
