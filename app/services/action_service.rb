@@ -6,6 +6,15 @@ class ActionService
     ChangesService.added(pm)
   end
 
+  def self.profile_invite(m)
+    pm = Profile.where(public_id: m.profile_id).first
+    um = User.create(email: m.email, fullname: '', password: 'password')
+    pm.users << um
+    um.save
+
+    ChangesService.added(um)
+  end
+
   @@thing_to_model = {
     'profile' => Profile,
   }
