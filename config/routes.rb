@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :actions, only: [:create]
       resources :profiles, only: [:show]
+      resources :users, only: [:show]
     end
   end
 end

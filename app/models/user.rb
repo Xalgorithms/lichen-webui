@@ -15,7 +15,7 @@ class User
   field :email,    type: String, default: nil
   field :encrypted_password, type: String, default: nil
   
-  validates_uniqueness_of :email, case_sensitive: false
+  # validates_uniqueness_of :email, case_sensitive: false
 
   # :rememberable
   field :remember_created_at, :type => Time
