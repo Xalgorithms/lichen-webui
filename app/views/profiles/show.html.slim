@@ -20,9 +20,11 @@
           <!-- /ko -->
       <!-- /ko -->
       div.actions
-        a.button.is-success Invite member
+        a.button.is-success data-bind="click: invite" Invite member
     .column.is-one-third.has-right-border
       h1 Documents
+
+  = render('modal_invite')
 
 = content_for(:javascript) do
   javascript:
