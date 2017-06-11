@@ -15,6 +15,12 @@ class ActionService
     ChangesService.added(um)
   end
 
+  def self.criteria_add(m)
+    pm = Profile.where(public_id: m.profile_id).first
+    cm = Criterium.create(key: m.key, value: m.value, profile: pm)
+    cm.save
+  end
+
   @@thing_to_model = {
     'profile' => Profile,
   }

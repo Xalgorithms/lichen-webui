@@ -6,6 +6,7 @@ Builders.make_profile_vm = function (pm, fn) {
     name: ko.observable(pm.name),
     owner: ko.observable(pm.owner),
     users: ko.observableArray(pm.users),
+    criteria: ko.observableArray(pm.criteria),
     url: Routes.profile_path(pm.id)
   };
 

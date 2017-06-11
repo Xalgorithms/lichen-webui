@@ -1,13 +1,17 @@
 (function () {
   var page_vm = {
     modals: {
-      invite: App.make_modal([], populate_invite, submit_invite)
+      invite: App.make_modal([], populate_invite, submit_invite),
+      criteria_add: App.make_modal([], populate_criteria_add, submit_criteria_add)
     }
   };
     
   var changes = {
     'user' : {
       'added' : receive_added_user
+    },
+    'criterium' : {
+      'added' : receive_added_criterium
     }
   };
 
@@ -23,6 +27,11 @@
     });
   }
 
+  function receive_added_criterium(ch) {
+    var pvm = page_vm.profile();
+    pvm.criteria.push(make_criteria_vm(_.pick(ch, ['key', 'value'])));
+  }
+  
   function format_user(o) {
     return o.name + " (" + o.email + ")";
   }
@@ -46,6 +55,27 @@
     });    
   }
 
+  function populate_criteria_add(vm) {
+    var mvm = {
+      key: ko.observable(),
+      value: ko.observable()
+    };
+
+    return mvm;
+  }
+
+  function submit_criteria_add(vm) {
+    var payload = {
+      key: vm.key(),
+      value: vm.value(),
+      profile_id: page_vm.profile().id
+    };
+
+    $.post(Routes.api_v1_actions_path(), { actions_criteria_add : payload }, function (o) {
+      console.log('sent change');
+    });    
+  }
+
   function make_user_vm(u, pvm) {
     var extras = {
       label: ko.computed(function () {
@@ -59,12 +89,21 @@
 
     return _.assignIn(extras, u);
   }
+
+  function make_criteria_vm(c, pvm) {
+    return c;
+  }
   
   function extend_profile_vm(pvm) {
     return {
       user_vms: ko.computed(function () {
 	return _.map(pvm.users(), function (u) {
 	  return make_user_vm(u, pvm);
+	});
+      }),
+      criteria_vms: ko.computed(function () {
+	return _.map(pvm.criteria(), function (c) {
+	  return make_criteria_vm(c, pvm);
 	});
       })
     };
@@ -75,6 +114,10 @@
 
     page_vm.invite = function (vm) {
       page_vm.modals.invite.actions.activate();
+    };
+
+    page_vm.criteria_add = function (vm) {
+      page_vm.modals.criteria_add.actions.activate();
     };
 
     return page_vm;

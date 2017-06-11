@@ -23,8 +23,22 @@
         a.button.is-success data-bind="click: invite" Invite member
     .column.is-one-third.has-right-border
       h1 Documents
+    .column.is-one-third.has-right-border
+      h1 Criteria
+      <!-- ko with: profile -->
+      ul.criteria
+        <!-- ko foreach: criteria_vms -->
+        li
+          span data-bind="text: key"
+          span &nbsp;MATCHES&nbsp;
+          span data-bind="text: value"
+        <!-- /ko -->
+      <!-- /ko -->
+      div.actions
+        a.button.is-success data-bind="click: criteria_add" Add
 
   = render('modal_invite')
+  = render('modal_criteria_add')
 
 = content_for(:javascript) do
   javascript:

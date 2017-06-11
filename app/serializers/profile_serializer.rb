@@ -5,6 +5,7 @@ class ProfileSerializer < Serializer
       name: m.name,
       users: UserSerializer.many(m.users, :profile),
       owner: UserSerializer.one(m.owner, :profile),
+      criteria: CriteriumSerializer.many(m.criteria, :profile)
     }
   end
 end

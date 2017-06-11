@@ -15,6 +15,10 @@ module Api
             klass: Actions::Remove,
             args: [:thing_id, :thing],
           },
+          'actions_criteria_add' => {
+            klass: Actions::CriteriaAdd,
+            args: [:profile_id, :key, :value],
+          },
         }
       
         @event = make

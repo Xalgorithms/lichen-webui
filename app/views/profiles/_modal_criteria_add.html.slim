@@ -1,0 +1,26 @@
+<!-- ko with: modals.criteria_add -->
+.modal data-bind="css: { 'is-active': active }"
+  .modal-background
+  .modal-card
+    header.modal-card-head
+      p.modal-card-title criteria_add
+      a data-bind="click: actions.deactivate"
+        = fa_icon('close')
+    section.modal-card-body
+      <!-- ko with: model -->
+      label.label for="key" key
+      p.control
+        input.input#key type="text" data-bind="value: key"
+
+      label.label for="value" value
+      p.control
+        input.input#value type="text" data-bind="value: value"
+      <!-- /ko -->
+    footer.modal-card-foot
+      a.button.is-default data-bind="click: actions.deactivate"
+        = fa_icon('close')
+        span close
+      a.button.is-primary data-bind="click: actions.submit"
+        = fa_icon('check')
+        span send
+<!-- /ko -->

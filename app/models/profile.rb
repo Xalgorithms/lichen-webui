@@ -6,6 +6,7 @@ class Profile
 
   has_and_belongs_to_many :users, inverse_of: :profiles
   belongs_to :owner, class_name: 'User', inverse_of: :owns
+  has_many :criteria
 
   def initialize(*args)
     super(*args)
